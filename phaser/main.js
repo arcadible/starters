@@ -63,10 +63,12 @@ let last = 0;
 let paused = false;
 let size = 1;
 
-// The saved settings, or none when there are none yet or they can't be read.
-function load() {
+// The saved settings, or none when there are none yet. When the saves can't
+// be reached, the default does for a setting; for progress, say so and try
+// again, rather than start over and save over it.
+async function load() {
   try {
-    return JSON.parse(arcadible.saves.readSync("settings")) ?? {};
+    return JSON.parse(await arcadible.saves.read("settings")) ?? {};
   } catch {
     return {};
   }
@@ -147,7 +149,7 @@ function frame(time) {
 // The spin's direction is saved, so it carries over to the game's next
 // version. See https://developer.arcadible.com/build/saves.
 await arcadible.ready;
-direction = load().direction === -1 ? -1 : 1;
+direction = (await load()).direction === -1 ? -1 : 1;
 
 addEventListener("contextmenu", (e) => e.preventDefault());
 addEventListener("keydown", press);
