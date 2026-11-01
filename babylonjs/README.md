@@ -8,7 +8,7 @@ A brief, plain-text pitch for your game, in a sentence or two. It's shown when y
 
 ---
 
-Tell players about your game here. This section becomes your game's description. It appears in the **About** section on the store page. Expand on your game, highlight its features, embed **PNG images** and **MP4 videos** from the .arcadible/gallery directory, and format your description with [Arcadible Markdown](https://developer.arcadible.com/references/arcadible-markdown).
+Tell players about your game here. This section becomes your game's description. It appears in the **About** section on the store page. Expand on your game, highlight its features, embed [PNGs and MP4s](https://developer.arcadible.com/references/arcadible-markdown#media) from the .arcadible/gallery directory, and format your description with [Arcadible Markdown](https://developer.arcadible.com/references/arcadible-markdown).
 
 ---
 

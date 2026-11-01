@@ -147,6 +147,12 @@ direction = (await load()).direction === -1 ? -1 : 1;
 addEventListener("contextmenu", (e) => e.preventDefault());
 addEventListener("keydown", press);
 document.addEventListener("visibilitychange", () => (paused = document.hidden));
+// iOS Safari magnifies the page when a second tap is held, whatever the CSS
+// says; only cancelling the touch as it lands stops it. Pointer events still
+// arrive.
+canvas.addEventListener("touchstart", (e) => e.preventDefault(), {
+  passive: false,
+});
 canvas.addEventListener("pointerdown", grab);
 canvas.addEventListener("pointermove", turn);
 canvas.addEventListener("pointerup", release);
