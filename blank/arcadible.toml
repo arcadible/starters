@@ -1,7 +1,6 @@
 [game]
 version = "0.1.0-beta.1"
 audience = "everyone"
-ai = "unused"
 orientation = "natural"
 inputs = [
   "keyboard",

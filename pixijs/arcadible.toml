@@ -1,6 +1,5 @@
 [game]
 audience = "everyone"
-ai = "unused"
 orientation = "natural"
 inputs = [
   "keyboard",

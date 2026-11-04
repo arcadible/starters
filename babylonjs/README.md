@@ -1,6 +1,6 @@
-# Untitled Game
-
 ![Untitled Game banner](.arcadible/banner.png)
+
+# Untitled Game
 
 ## A memorable tagline.
 
