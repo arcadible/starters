@@ -50,6 +50,9 @@ const game = new Phaser.Game({
       mark.setDisplayOrigin(0, 0);
       // Phaser boots after the first resize, so size it again once it has.
       resize();
+      // The first frame Phaser draws ends the initialization: the loading
+      // screen fades into it.
+      this.game.events.once("postrender", () => arcadible.initEnd());
     },
   },
   type: Phaser.WEBGL,
@@ -146,9 +149,13 @@ function frame(time) {
   requestAnimationFrame(frame);
 }
 
-// The spin's direction is saved, so it carries over to the game's next
-// version. See https://developer.arcadible.com/build/saves.
-await arcadible.ready;
+// Begin the game's initialization as the code starts, before anything
+// awaited or scheduled for later, so Arcadible shows its loading screen until
+// initEnd(), below. It resolves once the saves have loaded: the spin's
+// direction is saved, so it carries over to the game's next version. See
+// https://developer.arcadible.com/build/initialization and
+// https://developer.arcadible.com/build/saves.
+await arcadible.initBegin();
 direction = (await load()).direction === -1 ? -1 : 1;
 
 addEventListener("contextmenu", (e) => e.preventDefault());

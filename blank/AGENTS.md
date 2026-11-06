@@ -11,6 +11,7 @@ Read the page that covers what you're changing, every time, rather than relying 
 | Before you change                | Read                                                                                                                                                                                                |
 | -------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | The game                         | https://developer.arcadible.com/build/best-practices.md and https://developer.arcadible.com/build/runtime-limitations.md                                                                            |
+| How it starts                    | https://developer.arcadible.com/build/initialization.md                                                                                                                                             |
 | How it saves progress            | https://developer.arcadible.com/build/saves.md, then https://developer.arcadible.com/references/arcadible-sdk/saves.md and its codes in https://developer.arcadible.com/references/arcadible-sdk.md |
 | `arcadible.toml`                 | https://developer.arcadible.com/references/arcadible-manifest.md                                                                                                                                    |
 | `.arcadible/`                    | https://developer.arcadible.com/publish/store-page.md and https://developer.arcadible.com/references/arcadible-manifest.md                                                                          |
@@ -30,7 +31,7 @@ Read the page that covers what you're changing, every time, rather than relying 
 ## Commands
 
 ```sh
-arc serve                     # run the game locally, as Arcadible does, reloading as you edit
+arc serve                     # run the game locally, as Arcadible does, reloading as you edit; its Game only address is the game alone, for screenshots and checks
 arc validate                  # the checks arc deploy runs, with a link to each broken rule
 arc deploy                    # validate, pack, publish, and wait until it's published
 ```
@@ -40,6 +41,7 @@ Every `arc` command is in https://developer.arcadible.com/references/arcadible-c
 ## What doesn't change
 
 - **Each version starts with empty browser storage,** since each build has its own origin. Keep progress in saves, through the Arcadible SDK: the hosted script, `<script src="/arcadible/sdk/v1.js"></script>`, which Arcadible and `arc serve` serve.
+- **Startup is bracketed** with `await arcadible.initBegin()` and `await arcadible.initEnd()`, so Arcadible shows the game's loading screen until its first frame is drawn. Keep `initBegin()` in the scripts' first run, before anything awaited or scheduled for later, or the loading screen is gone before the game is ready.
 - **The game runs in the Arcadible sandbox,** which `arc serve` reproduces and other local servers don't. Read the runtime limitations before changing how it loads files, stores data, or talks to servers.
 - **`/arcadible/` is Arcadible's.** Don't put an `arcadible` folder at the root of `deploy_dir`.
 

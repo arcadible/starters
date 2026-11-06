@@ -131,9 +131,13 @@ function frame(time) {
   requestAnimationFrame(frame);
 }
 
-// The spin's direction is saved, so it carries over to the game's next
-// version. See https://developer.arcadible.com/build/saves.
-await arcadible.ready;
+// Begin the game's initialization as the code starts, before anything
+// awaited or scheduled for later, so Arcadible shows its loading screen until
+// initEnd(), below. It resolves once the saves have loaded: the spin's
+// direction is saved, so it carries over to the game's next version. See
+// https://developer.arcadible.com/build/initialization and
+// https://developer.arcadible.com/build/saves.
+await arcadible.initBegin();
 direction = (await load()).direction === -1 ? -1 : 1;
 
 addEventListener("contextmenu", (e) => e.preventDefault());
@@ -150,4 +154,9 @@ canvas.addEventListener("pointermove", turn);
 canvas.addEventListener("pointerup", release);
 canvas.addEventListener("pointercancel", release);
 new ResizeObserver(resize).observe(canvas);
-requestAnimationFrame(frame);
+// The first frame drawn ends the initialization: the loading screen fades
+// into it.
+requestAnimationFrame((time) => {
+  frame(time);
+  arcadible.initEnd();
+});

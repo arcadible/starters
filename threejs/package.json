@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@arcadible/sdk": "^1.2.2",
+    "@arcadible/sdk": "^1.3.0",
     "three": "^0.186.1"
   },
   "devDependencies": {
