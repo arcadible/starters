@@ -18,6 +18,7 @@ Read the page that covers what you're changing, every time, rather than relying 
 | `README.md`                      | https://developer.arcadible.com/references/arcadible-markdown.md                                                                                                                                    |
 | How you deploy, play, or release | https://developer.arcadible.com/references/arcadible-cli.md and https://developer.arcadible.com/publish/releases.md                                                                                 |
 | How it releases from GitHub      | https://developer.arcadible.com/publish/deploying-from-github.md                                                                                                                                    |
+| Its screenshots or videos        | https://raw.githubusercontent.com/arcadible/skills/v1/skills/arcadible/SKILL.md, Arcadible's agent skill, whose `scripts/record.mjs` records them                                                   |
 
 ## Project structure
 
