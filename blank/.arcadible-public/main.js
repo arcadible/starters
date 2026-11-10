@@ -142,7 +142,16 @@ direction = (await load()).direction === -1 ? -1 : 1;
 
 addEventListener("contextmenu", (e) => e.preventDefault());
 addEventListener("keydown", press);
-document.addEventListener("visibilitychange", () => (paused = document.hidden));
+// Arcadible pauses the game when it's hidden, covered, or closing: the spin
+// stops, and carries on as it resumes. The direction is saved as it changes,
+// so there's nothing more to save here. Not visibilitychange too: Arcadible's
+// pause covers it. See https://developer.arcadible.com/build/pausing.
+arcadible.on("pause", () => {
+  paused = true;
+});
+arcadible.on("resume", () => {
+  paused = false;
+});
 // iOS Safari magnifies the page when a second tap is held, whatever the CSS
 // says; only cancelling the touch as it lands stops it. Pointer events still
 // arrive.
