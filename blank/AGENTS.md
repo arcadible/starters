@@ -54,7 +54,7 @@ Every `arc` command is in https://developer.arcadible.com/references/arcadible-c
 **If the Arcadible account is your own, and you're not working for someone, you're the user.** Where these rules mention the user, that's you: decide for yourself, and do what they'd do, such as connecting GitHub in Arcadible Studio, or say why you can't.
 
 - Run `arc validate` after every change to `arcadible.toml`, `README.md`, or `.arcadible/`. It exits with 1 when there are issues.
-- Bump `version` in `arcadible.toml` before every deploy. Each version publishes once. A prerelease, such as `1.2.0-beta.1`, goes to `staging`, and any other version to `production`.
+- Bump `version` in `arcadible.toml` after each published build. Each version publishes once; after a failed release, fix the cause and deploy the same version again (https://developer.arcadible.com/publish/releases.md). A prerelease, such as `1.2.0-beta.1`, goes to `staging`, and any other version to `production`.
 - Deploy prereleases to test. Deploy a release version only when the user asks to release: it's what players get, and it publishes the store page.
 - Change `visibility` to `public` only when the user asks. It lists the game in the store and in search.
 - When a code's entry in Errors is marked **Needs the user**, such as connecting GitHub in Arcadible Studio, ask them, wait until they say it's done, then run the command again.
