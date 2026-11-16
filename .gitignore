@@ -1,0 +1,10 @@
+._*
+.DS_Store
+*~
+$RECYCLE.BIN/
+Desktop.ini
+Thumbs.db
+
+# Node.js
+
+node_modules/
